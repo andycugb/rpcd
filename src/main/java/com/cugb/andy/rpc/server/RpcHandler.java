@@ -15,6 +15,7 @@ import net.sf.cglib.reflect.FastMethod;
 
 /**
  * Created by jbcheng on 3/3/17.
+ * 请求实际处理逻辑类
  */
 public class RpcHandler extends SimpleChannelInboundHandler<RpcRequest> {
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcHandler.class);
@@ -38,6 +39,7 @@ public class RpcHandler extends SimpleChannelInboundHandler<RpcRequest> {
         ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
     }
 
+    // bean map中取对应实例,利用cglib反射方式invoke实际方法调用
     private Object handle(RpcRequest request) throws Throwable {
         String className = request.getClassName();
         LOGGER.info("request {},className {}",request,className);

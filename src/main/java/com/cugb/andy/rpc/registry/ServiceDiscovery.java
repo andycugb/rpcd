@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created by jbcheng on 3/3/17.
+ * 服务发现
  */
 public class ServiceDiscovery {
     private static final Logger logger = LoggerFactory.getLogger(ServiceDiscovery.class);
@@ -21,7 +22,7 @@ public class ServiceDiscovery {
     public ServiceDiscovery(String registryAddress) {
         ZooKeeper zk = new ZkHelper(registryAddress).connectServer();
         if (null != zk) {
-            watchNode(zk, ZkHelper.DATA_PATH);
+            watchNode(zk, ZkHelper.DATA_PATH); // 实例化后监听节点信息,自动发现注册的server服务
         }
     }
 

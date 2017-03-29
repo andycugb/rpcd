@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created by jbcheng on 3/3/17.
+ * zk 操作
  */
 public class ZkHelper {
     private final int TIME_OUT = 1000 * 30;

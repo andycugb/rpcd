@@ -2,9 +2,10 @@ package com.cugb.andy.pojo;
 
 /**
  * Created by jbcheng on 3/3/17.
+ * response响应封装
  */
 public class RpcResponse {
-    private String requestId;
+    private String requestId;// 请求唯一标示
     private Throwable error;
     private Object result;
 

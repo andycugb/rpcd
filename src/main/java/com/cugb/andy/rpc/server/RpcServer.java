@@ -28,6 +28,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 
 /**
  * Created by jbcheng on 3/3/17.
+ * 服务提供类
  */
 public class RpcServer implements ApplicationContextAware, InitializingBean {
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -48,7 +49,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
             for (Object bean : serviceBeanMap.values()) {
                 String interfaceName =
                         bean.getClass().getAnnotation(RpcService.class).value().getName();
-                handlerMap.put(interfaceName, bean);
+                handlerMap.put(interfaceName, bean); // server启动后加载提供服务的类信息到bean map
             }
         }
     }
@@ -75,6 +76,7 @@ public class RpcServer implements ApplicationContextAware, InitializingBean {
             String host = array[0];
             int port = Integer.parseInt(array[1]);
 
+            // 实例化后,监听端口
             ChannelFuture future = bootstrap.bind(host, port).sync();
             logger.info("server start on port:" + port);
 

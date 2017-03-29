@@ -20,6 +20,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
  * Created by jbcheng on 3/3/17.
+ * 请求逻辑处理类,netty实现
  */
 public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcClient.class);
@@ -63,7 +64,7 @@ public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
                         }
                     }).option(ChannelOption.SO_KEEPALIVE, true);
 
-            ChannelFuture future = bootstrap.connect(host, port).sync();
+            ChannelFuture future = bootstrap.connect(host, port).sync(); // 绑定端口
             future.channel().writeAndFlush(request).sync();
 
             synchronized (object) {

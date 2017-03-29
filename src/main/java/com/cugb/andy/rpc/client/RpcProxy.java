@@ -13,9 +13,10 @@ import com.cugb.andy.rpc.registry.ServiceDiscovery;
 
 /**
  * Created by jbcheng on 3/3/17.
+ * 代理服务来
  */
 public class RpcProxy {
-    private ServiceDiscovery serviceDiscovery;
+    private ServiceDiscovery serviceDiscovery; // 服务发现,基于zk实现
 
     public RpcProxy(ServiceDiscovery serviceDiscovery) {
         this.serviceDiscovery = serviceDiscovery;
@@ -46,7 +47,7 @@ public class RpcProxy {
                         int port = Integer.parseInt(array[1]);
 
                         RpcClient client = new RpcClient(host, port);
-                        RpcResponse response = client.send(request);
+                        RpcResponse response = client.send(request); // 代理真实请求
 
                         if (response.getError() != null) {
                             throw response.getError();

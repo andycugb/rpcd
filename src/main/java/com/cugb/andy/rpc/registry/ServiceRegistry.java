@@ -5,6 +5,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Created by jbcheng on 3/3/17.
+ * 服务注册
  */
 public class ServiceRegistry {
     private String address;
