@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.cugb.andy"/>
+    <context:property-placeholder location="classpath:rpc-server-config.properties"/>
+
+    <!--注册组件-->
+    <bean id="serviceRegistry" class="com.cugb.andy.rpc.registry.ServiceRegistry">
+        <constructor-arg name="registryAddress" value="123.126.62.116:2181"/>
+    </bean>
+
+    <!--rpc服务注册-->
+    <bean id="rpcServer" class="com.cugb.andy.rpc.server.RpcServer">
+        <constructor-arg name="serviceRegistry" ref="serviceRegistry"/>
+        <constructor-arg name="serverAddress" value="127.0.0.1:8080"/>
+    </bean>
+</beans>
